@@ -6,22 +6,27 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const jwt    = require('jsonwebtoken');
+const bodyParser  = require('body-parser');
+
 
 const config = require('../config/config');
 const webpackConfig = require('../webpack.config');
 
 const isDev = process.env.NODE_ENV !== 'production';
 const port  = process.env.PORT || 8080;
+const app = express();
+
+app.set('superSecret', config.secret); // secret variable
 
 
 // Configuration
 // ================================================================================================
 
 // Set up Mongoose
-mongoose.connect(isDev ? config.db_dev : config.db);
+mongoose.connect(isDev ? config.db_dev : config.db, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 
-const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
