@@ -8,7 +8,10 @@ const helpers = require('./helpers');
 
 const NODE_ENV = process.env.NODE_ENV;
 const isProd = NODE_ENV === 'production';
-
+// const cssModulesIdentName = '[name]__[local]__[hash:base64:5]';
+// if (NODE_ENV === 'production') {
+  // cssModulesIdentName = '[hash:base64]';
+// }
 module.exports = {
   entry: {
     'app': [
@@ -39,7 +42,7 @@ module.exports = {
 
       // SCSS files
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -61,7 +64,59 @@ module.exports = {
             'sass-loader'
           ]
         })
-      }
+      },
+      // {
+      //   test: /\.css$/,
+      //   exclude: /node_modules/,
+      //   use: [
+      //     {
+      //       loader: 'style-loader',
+      //     },
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         localIdentName: cssModulesIdentName,
+      //         modules: true,
+      //         importLoaders: 1,
+      //         sourceMap: true,
+      //       },
+      //     },
+      //     {
+      //       loader: 'postcss-loader',
+      //       options: {
+      //         plugins: () => [
+      //           postcssFocus(),
+      //           cssnext({
+      //             browsers: ['last 2 versions', 'IE > 10'],
+      //           }),
+      //           postcssReporter({
+      //             clearMessages: true,
+      //           }),
+      //         ],
+      //       },
+      //     },
+      //   ],
+      // },
+      // {
+      //           test: /\.ttf$/,
+      //           use: [{ loader: 'ttf-loader', options: { name: './font/[hash].[ext]'}}]
+      //       },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [{ loader: 'file-loader', options: { name: './font/[hash].[ext]' }}]
+            },
+      {
+        test: /\.jpe?g$|\.gif$|\.png$|\.svg$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
+
     ]
   },
 
