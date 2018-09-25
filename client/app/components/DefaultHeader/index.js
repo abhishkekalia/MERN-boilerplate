@@ -14,16 +14,15 @@ const defaultProps = {};
 
 class DefaultHeader extends Component {
   render() {
-
     // eslint-disable-next-line
     const { children, ...attributes } = this.props;
-
     return (
-      <React.Fragment>
+      <>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
-
+        <AppNavbarBrand
+          full={{ src: logo, width: 89, height: 25, alt: 'CoreUI Logo' }}
+          minimized={{ src: sygnet, width: 30, height: 30, alt: 'CoreUI Logo' }}/>
         <AppSidebarToggler className="d-md-down-none" display="lg" />
-
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
             <NavLink href="/">Dashboard</NavLink>
@@ -68,7 +67,7 @@ class DefaultHeader extends Component {
         </Nav>
         <AppAsideToggler className="d-md-down-none" />
         {/*<AppAsideToggler className="d-lg-none" mobile />*/}
-      </React.Fragment>
+      </>
     );
   }
 }

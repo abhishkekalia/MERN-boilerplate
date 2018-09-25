@@ -72,11 +72,7 @@ module.exports = {
         })
       },
       {
-        test: /\.svg/,
-        loader: "url-loader?limit=26000&mimetype=image/svg+xml"
-      },
-      {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         use: [{ loader: 'file-loader', options: { name: './font/[hash].[ext]' }}]
       },
       {
@@ -84,9 +80,9 @@ module.exports = {
         use: [
           {
             loader: 'url-loader',
-            options: {
-              limit: 10000,
-            },
+            // options: {
+              // limit: 10000,
+            // },
           },
         ],
       },

@@ -30,21 +30,24 @@ export default class Layout extends Component {
                     <AppSidebar fixed display="lg">
                         <AppSidebarHeader />
                         <AppSidebarForm />
-                        <AppSidebarNav navConfig={nav} />
+                        <AppSidebarNav navConfig={nav} {...this.props}/>
                         <AppSidebarFooter />
                         <AppSidebarMinimizer />
                     </AppSidebar>
                     <main className="main">
                         <Container fluid>
                            <Switch>
-{routes.map((route, idx) => {
-                    return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
-                        <route.component {...props} />
-                      )} />)
-                      : (null);
-                  },
-                )}
-                <Redirect from="/" to="/dashboard" />                           </Switch>
+                             {
+                               routes.map((route, idx) => {
+                                 return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
+                                   <route.component {...props} />
+                                   )} />
+                                   ) : (null);
+                                 },
+                               )
+                             }
+                             <Redirect from="/" to="/dashboard" />
+                           </Switch>
                         </Container>
                     </main>
                     <AppAside fixed hidden>
