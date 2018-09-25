@@ -35,9 +35,15 @@ module.exports = {
     rules: [
       // JS files
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)?$/,
         include: helpers.root('client'),
-        loader: 'babel-loader'
+        use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/react', '@babel/env']
+                    }
+                },
+        // loader: 'babel-loader'
       },
 
       // SCSS files
@@ -65,46 +71,14 @@ module.exports = {
           ]
         })
       },
-      // {
-      //   test: /\.css$/,
-      //   exclude: /node_modules/,
-      //   use: [
-      //     {
-      //       loader: 'style-loader',
-      //     },
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         localIdentName: cssModulesIdentName,
-      //         modules: true,
-      //         importLoaders: 1,
-      //         sourceMap: true,
-      //       },
-      //     },
-      //     {
-      //       loader: 'postcss-loader',
-      //       options: {
-      //         plugins: () => [
-      //           postcssFocus(),
-      //           cssnext({
-      //             browsers: ['last 2 versions', 'IE > 10'],
-      //           }),
-      //           postcssReporter({
-      //             clearMessages: true,
-      //           }),
-      //         ],
-      //       },
-      //     },
-      //   ],
-      // },
-      // {
-      //           test: /\.ttf$/,
-      //           use: [{ loader: 'ttf-loader', options: { name: './font/[hash].[ext]'}}]
-      //       },
-            {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                use: [{ loader: 'file-loader', options: { name: './font/[hash].[ext]' }}]
-            },
+      {
+        test: /\.svg/,
+        loader: "url-loader?limit=26000&mimetype=image/svg+xml"
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{ loader: 'file-loader', options: { name: './font/[hash].[ext]' }}]
+      },
       {
         test: /\.jpe?g$|\.gif$|\.png$|\.svg$/i,
         use: [

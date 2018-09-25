@@ -1,6 +1,5 @@
-// import React from 'react';
-import {Loadable} from 'react-loadable'
-
+import React from 'react';
+import Loadable from 'react-loadable';
 import Layout from './components/Layout';
 
 function Loading() {
@@ -182,9 +181,6 @@ const User = Loadable({
   loading: Loading,
 });
 
-
-
-// https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: Layout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },

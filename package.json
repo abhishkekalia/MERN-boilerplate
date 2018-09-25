@@ -10,7 +10,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "webpack -p --progress --profile --colors && nodemon server",
+    "start": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon server.js",
     "start:dev": "node server"
   },
   "engines": {
@@ -19,9 +19,9 @@
   "dependencies": {
     "@babel/core": "^7.0.0-beta.42",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/preset-env": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0-beta.42",
-    "@coreui/coreui": "^2.0.8",
+    "@coreui/coreui": "^2.0.9",
     "@coreui/coreui-plugin-chartjs-custom-tooltips": "^1.2.0",
     "@coreui/icons": "^0.3.0",
     "@coreui/react": "^2.0.5",
@@ -32,8 +32,10 @@
     "chart.js": "^2.7.2",
     "classnames": "^2.2.6",
     "connect-history-api-fallback": "^1.5.0",
+    "connected-react-router": "^4.5.0",
     "copy-webpack-plugin": "^4.5.1",
     "core-js": "^2.5.7",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
@@ -41,6 +43,7 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "flag-icon-css": "^3.2.0",
     "font-awesome": "^4.7.0",
+    "history": "^4.7.2",
     "html-webpack-plugin": "^3.1.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.17",
